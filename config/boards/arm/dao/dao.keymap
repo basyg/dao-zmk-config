@@ -13,10 +13,18 @@
 #define RSE 2
 #define ADJ 3
 
+#define COMBO(NAME, BINDINGS, KEYPOS) \
+  combo_##NAME { \
+    timeout-ms = <10>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <0>; \
+  };
+
 &lt { quick_tap_ms = <200>; };
 &mt { quick_tap_ms = <200>; };
 &sk {
-    release-after-ms = <2000>;
+    release-after-ms = <1000>;
     quick-release;
     ignore-modifiers;
 };
@@ -35,20 +43,85 @@
             bindings = <&kp>, <&kp>;
         };
     };
+    combos {
+        compatible = "zmk,combos";
+              
+        COMBO(le, &kp E, 5 4)
+        COMBO(lz, &kp Z, 4 3)
+        COMBO(lm, &kp M, 3 2)
+        COMBO(ls, &kp S, 5 3)
+        COMBO(lsqt, &kp SQT, 4 2)
+        COMBO(ldot, &kp DOT, 5 2)
+        COMBO(lq, &kp Q, 5 4 3)
+        COMBO(lrbkt, &kp RBKT, 4 3 2)
+        COMBO(lgrave, &kp GRAVE, 5 3 2)
+        COMBO(lesc, &kp ESC, 5 4 3 2)
+
+        COMBO(re, &kp E, 8 9)
+        COMBO(rz, &kp Z, 9 10)
+        COMBO(rm, &kp M, 10 11)
+        COMBO(rs, &kp S, 8 10)
+        COMBO(rsqt, &kp SQT, 9 11)
+        COMBO(rdot, &kp DOT, 8 11)
+        COMBO(rq, &kp Q, 8 9 10)
+        COMBO(rbkt, &kp RBKT, 9 10 11)
+        COMBO(rgrave, &kp GRAVE, 8 10 11)
+        COMBO(resc, &kp ESC, 8 9 10 11)
+              
+        COMBO(lg, &kp G, 18 17)
+        COMBO(lu, &kp U, 17 16)
+        COMBO(lp, &kp P, 16 15)
+        COMBO(li, &kp I, 18 16)
+        COMBO(lw, &kp W, 17 15)
+        COMBO(lo, &kp O, 18 15)
+        // COMBO(lCT, &kp , 18 17 16)
+        COMBO(la, &kp A, 17 16 15)
+        COMBO(ltab, &kp TAB, 18 16 15)
+        COMBO(lret, &kp RET, 18 17 16 15)
+              
+        COMBO(rg, &kp G, 21 22)
+        COMBO(ru, &kp U, 22 23)
+        COMBO(rp, &kp P, 23 24)
+        COMBO(ri, &kp I, 21 23)
+        COMBO(rw, &kp W, 22 24)
+        COMBO(ro, &kp O, 21 24)
+        // COMBO(rCT, &kp , 21 22 23)
+        COMBO(ra, &kp A, 22 23 24)
+        COMBO(rtab, &kp TAB, 21 23 24)
+        COMBO(rret, &kp RET, 21 22 23 24)
+        
+        COMBO(lv, &kp v, 39 19)
+        COMBO(lk, &kp k, 39 18)
+        COMBO(lr, &kp r, 39 17)
+        COMBO(ll, &kp l, 39 16)
+        COMBO(lcomma, &kp comma, 39 15)
+        COMBO(lx, &kp x, 39 18 17)
+        COMBO(llbkt, &kp lbkt, 39 17 16)
+        COMBO(lsemi, &kp semi, 39 16 15)
+        
+        COMBO(rv, &kp v, 42 20)
+        COMBO(rk, &kp k, 42 21)
+        COMBO(rr, &kp r, 42 22)
+        COMBO(rl, &kp l, 42 23)
+        COMBO(rcomma, &kp comma, 42 24)
+        COMBO(rx, &kp x, 42 21 22)
+        COMBO(rlbkt, &kp lbkt, 42 22 23)
+        COMBO(rsemi, &kp semi, 42 23 24)
+
+    };
     keymap {
         compatible = "zmk,keymap";
         
         default_layer {
             bindings = <
-//0       1       2             3             4                  5              6                  7               8               9             10            11         12           13
-//        14      15            16            17                 18             19                 20              21              22            23            24         25           26
-//        27      28            29            30                 31             32                 33              34              35            36            37         38           38
-//                                            39                 40             41                 42              44              45
+//0     1           2           3           4               5           6                       7               8               9               10          11          12           13
 &none   &sk LALT    &kp B       &kp F       &kp J           &kp T       &kp BSPC                &kp BSPC        &kp T           &kp J           &kp F       &kp B       &sk RALT    &none
-        &sk LSHIFT  &kp D       &kp H       &kp N           &kp Y       &kp C                   &kp C           &kp Y           &kp N           &kp H       &kp D       &sk RSHIFT  
+//      14          15          16          17              18          19                      20              21              22              23          24          25
+        &sk LSHIFT  &kp D       &kp H       &kp N           &kp Y       &kp C                   &kp C           &kp Y           &kp N           &kp H       &kp D       &sk RSHIFT
+//      26          27          28          29              30          31                      32              33              34              35          36          37
         &sk LCTRL   &none       &kp FSLH    &kp LS(FSLH)    &none       &none                   &none           &none           &kp LS(FSLH)    &kp FSLH    &none       &sk RCTRL
-
-                                &lt RSE LS(FSLH)        &kp SPACE       &lt LWR LSHFT           &lt LWR RSHFT   &kp SPACE   &lt RSE LS(FSLH)
+//                              38                          39          40                      41              42              43
+                                &lt RSE LS(FSLH)            &kp SPACE   &lt LWR LSHFT           &lt LWR RSHFT   &kp SPACE   &lt RSE LS(FSLH)
             >;
                 };
                 lower_layer {
