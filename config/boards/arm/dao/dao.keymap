@@ -8,11 +8,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define DEF 0
-#define LWR 1
-#define RSE 2
-#define ADJ 3
-
 #define COMBO(NAME, BINDINGS, KEYPOS) \
     combo_##NAME { \
         layers = <0>; \
@@ -32,128 +27,26 @@
         bindings = __VA_ARGS__; \
     };
 
-&lt { quick_tap_ms = <200>; };
-&mt { quick_tap_ms = <200>; };
-&sk {
-    release-after-ms = <1000>;
-    quick-release;
-    ignore-modifiers;
-};
-
 / {
     macros {
         MACRO(tapA, <&macro_tap &kp A>)
-        MACRO(tapB, <&macro_tap &kp B>)
-        MACRO(tapC, <&macro_tap &kp C>)
-        MACRO(tapD, <&macro_tap &kp D>)
-        MACRO(tapE, <&macro_tap &kp E>)
+        MACRO(tapS, <&macro_tap &kp S>)
         MACRO(tapF, <&macro_tap &kp F>)
         MACRO(tapG, <&macro_tap &kp G>)
-        MACRO(tapH, <&macro_tap &kp H>)
-        MACRO(tapI, <&macro_tap &kp I>)
-        MACRO(tapJ, <&macro_tap &kp J>)
-        MACRO(tapK, <&macro_tap &kp K>)
-        MACRO(tapL, <&macro_tap &kp L>)
-        MACRO(tapM, <&macro_tap &kp M>)
-        MACRO(tapN, <&macro_tap &kp N>)
-        MACRO(tapO, <&macro_tap &kp O>)
-        MACRO(tapP, <&macro_tap &kp P>)
+
         MACRO(tapQ, <&macro_tap &kp Q>)
-        MACRO(tapR, <&macro_tap &kp R>)
-        MACRO(tapS, <&macro_tap &kp S>)
-        MACRO(tapT, <&macro_tap &kp T>)
-        MACRO(tapU, <&macro_tap &kp U>)
-        MACRO(tapV, <&macro_tap &kp V>)
         MACRO(tapW, <&macro_tap &kp W>)
-        MACRO(tapX, <&macro_tap &kp X>)
-        MACRO(tapY, <&macro_tap &kp Y>)
-        MACRO(tapZ, <&macro_tap &kp Z>)
-        MACRO(tapGRAVE, <&macro_tap &kp GRAVE>)
-        MACRO(tapLBKT, <&macro_tap &kp LBKT>)
-        MACRO(tapRBKT, <&macro_tap &kp RBKT>)
-        MACRO(tapSEMI, <&macro_tap &kp SEMI>)
-        MACRO(tapSQT, <&macro_tap &kp SQT>)
-        MACRO(tapCOMMA, <&macro_tap &kp COMMA>)
-        MACRO(tapDOT, <&macro_tap &kp DOT>)
-        MACRO(tapFSLH, <&macro_tap &kp FSLH>)
-        MACRO(tapQSTM, <&macro_press &kp LSHFT>, <&macro_tap &kp FSLH>, <&macro_release &kp LSHFT>)
-    };
-    behaviors {
-        cmt: custom_mode_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "CUSTOM_MODE_TAP";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <1000>;
-            quick-tap-ms = <250>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
-        };
+        MACRO(tapE, <&macro_tap &kp E>)
+        MACRO(tapR, <&macro_tap &kp R>)
+        MACRO(tapT, <&macro_tap &kp T>)
     };
     combos {
         compatible = "zmk,combos";
               
-        COMBO(le, <&tapE>, 5 4)
-        COMBO(lz, <&tapZ>, 4 3)
-        COMBO(lm, <&tapM>, 3 2)
-        COMBO(ls, <&tapS>, 5 3)
-        COMBO(lsqt, <&tapSQT>, 4 2)
-        COMBO(ldot, <&tapDOT>, 5 2)
-        COMBO(lq, <&tapQ>, 5 4 3)
-        COMBO(lrbkt, <&tapRBKT>, 4 3 2)
-        COMBO(lgrave, <&tapGRAVE>, 5 3 2)
-        COMBO(lesc, <&kp ESC>, 5 4 3 2)
-
-        COMBO(re, <&tapE>, 8 9)
-        COMBO(rz, <&tapZ>, 9 10)
-        COMBO(rm, <&tapM>, 10 11)
-        COMBO(rs, <&tapS>, 8 10)
-        COMBO(rsqt, <&tapSQT>, 9 11)
-        COMBO(rdot, <&tapDOT>, 8 11)
-        COMBO(rq, <&tapQ>, 8 9 10)
-        COMBO(rbkt, <&tapRBKT>, 9 10 11)
-        COMBO(rgrave, <&tapGRAVE>, 8 10 11)
-        COMBO(resc, <&kp ESC>, 8 9 10 11)
-              
-        COMBO(lg, <&tapG>, 18 17)
-        COMBO(lu, <&tapU>, 17 16)
-        COMBO(lp, <&tapP>, 16 15)
-        COMBO(li, <&tapI>, 18 16)
-        COMBO(lw, <&tapW>, 17 15)
-        COMBO(lo, <&tapO>, 18 15)
-        // COMBO(lCT, <&kp ,> 18 17 16)
-        COMBO(la, <&tapA>, 17 16 15)
-        COMBO(ltab, <&kp TAB>, 18 16 15)
-        COMBO(lret, <&kp RET>, 18 17 16 15)
-              
-        COMBO(rg, <&tapG>, 21 22)
-        COMBO(ru, <&tapU>, 22 23)
-        COMBO(rp, <&tapP>, 23 24)
-        COMBO(ri, <&tapI>, 21 23)
-        COMBO(rw, <&tapW>, 22 24)
-        COMBO(ro, <&tapO>, 21 24)
-        // COMBO(rCT, <&kp ,> 21 22 23)
-        COMBO(ra, <&tapA>, 22 23 24)
-        COMBO(rtab, <&kp TAB>, 21 23 24)
-        COMBO(rret, <&kp RET>, 21 22 23 24)
-        
-        COMBO(lv, <&tapV>, 39 19)
-        COMBO(lk, <&tapK>, 39 18)
-        COMBO(lr, <&tapR>, 39 17)
-        COMBO(ll, <&tapL>, 39 16)
-        COMBO(lcomma, <&tapCOMMA>, 39 15)
-        COMBO(lx, <&tapX>, 39 18 17)
-        COMBO(llbkt, <&tapLBKT>, 39 17 16)
-        COMBO(lsemi, <&tapSEMI>, 39 16 15)
-        
-        COMBO(rv, <&tapV>, 42 20)
-        COMBO(rk, <&tapK>, 42 21)
-        COMBO(rr, <&tapR>, 42 22)
-        COMBO(rl, <&tapL>, 42 23)
-        COMBO(rcomma, <&tapCOMMA>, 42 24)
-        COMBO(rx, <&tapX>, 42 21 22)
-        COMBO(rlbkt, <&tapLBKT>, 42 22 23)
-        COMBO(rsemi, <&tapSEMI>, 42 23 24)
+        COMBO(le, <&tapA>, 1 2)
+        COMBO(lz, <&tapS>, 1 2 3)
+        COMBO(lm, <&tapF>, 3 4 5)
+        COMBO(lm, <&tapG>, 4 5)
 
     };
     keymap {
@@ -161,40 +54,9 @@
         
         default_layer {
             bindings = <
-//0     1           2           3           4               5           6                       7               8               9               10          11          12           13
-&none   &sk LALT    &tapB       &tapF       &tapJ           &tapT       &kp BSPC                &kp BSPC        &tapT           &tapJ           &tapF       &tapB       &sk RALT    &none
-//      14          15          16          17              18          19                      20              21              22              23          24          25
-        &sk LSHIFT  &tapD       &tapH       &tapN           &tapY       &tapC                   &tapC           &tapY           &tapN           &tapH       &tapD       &sk RSHIFT
-//      26          27          28          29              30          31                      32              33              34              35          36          37
-        &sk LCTRL   &none       &tapFSLH    &tapQSTM    &none       &none                   &none           &none           &tapQSTM    &tapFSLH    &none       &sk RCTRL
-//                              38                          39          40                      41              42              43
-                                &lt RSE LS(FSLH)            &kp SPACE   &lt LWR LSHFT           &lt LWR RSHFT   &kp SPACE   &lt RSE LS(FSLH)
+                //0     1       2       3       4       5
+                &none   &tapQ   &tapW   &tapE   &tapR   &tapT
             >;
                 };
-                lower_layer {
-                        bindings = <
-  &none   &mt LGUI F1      &kp F2     &kp F3   &kp F4        &kp F5     &kp F6      &kp F7      &kp F8     &kp F9        &kp F10    &kp F11    &kp F12           &none
-          &mt LCTRL PLUS   &kp EXCL   &kp AT   &kp HASH      &kp DLLR   &kp PRCNT   &kp CARET   &kp AMPS   &kp STAR      &kp LPAR   &kp RPAR   &mt RCTRL MINUS
-          &mt LALT EQUAL   &kp N1     &kp N2   &kp N3        &kp N4     &kp N5      &kp N6      &kp N7     &kp N8        &kp N9     &kp N0     &kp RALT
-                                               &lt ADJ TAB   &trans     &trans      &trans      &trans     &lt ADJ DEL
-                        >;
-                };
-
-                raise_layer {
-                        bindings = <
-  &none   &mt LGUI KP_NUM   &kp KP_SLASH      &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_MINUS   &kp C_VOL_UP   &kp HOME   &kp PSCRN   &kp PG_UP   &kp SLCK          &kp CLCK           &none
-          &mt LCTRL EQUAL   &kp KP_MULTIPLY   &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp KP_PLUS    &kp C_MUTE     &kp LEFT   &kp UP      &kp RIGHT   &kp INS           &mt RCTRL  K_APP
-          &kp LALT          &kp KP_N0         &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_DOT     &kp C_VOL_DN   &kp END    &kp DOWN    &kp PG_DN   &kp PAUSE_BREAK   &kp RALT
-                                                          &trans      &trans      &lt ADJ RET    &lt ADJ ESC    &trans     &trans
-                        >;
-                };
-                adjust_layer {
-                        bindings = <
-  &none   &bootloader   &none          &none          &none          &none          &none          &none          &none          &none          &none          &none          &bootloader   &none
-          &bt BT_CLR    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_SEL 4   &bt BT_SEL 3   &bt BT_SEL 2   &bt BT_SEL 1   &bt BT_SEL 0   &bt BT_CLR
-          &reset        &none          &none          &none          &none          &none          &none          &none          &none          &none          &none          &reset
-                                                      &trans         &none          &trans         &none          &trans         &trans
-                        >;
-                };
-        };
+    };
 };
