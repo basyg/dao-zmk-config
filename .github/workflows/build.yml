@@ -69,12 +69,6 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: update max combos per key
-        run: ln="$(($(sed -n '/ZMK_COMBO_MAX_COMBOS_PER_KEY/=' zmk/app/Kconfig)+11))"; sed -i "${ln}s/default \([0-9]*\)/default 16/" zmk/app/Kconfig
-      - name: update max keys per combo
-        run: ln="$(($(sed -n '/ZMK_COMBO_MAX_KEYS_PER_COMBO/=' zmk/app/Kconfig)+4))"; sed -i "${ln}s/default \([0-9]*\)/default 16/" zmk/app/Kconfig
-      - name: update max pressed combos
-        run: ln="$(($(sed -n '/ZMK_COMBO_MAX_PRESSED_COMBOS/=' zmk/app/Kconfig)+4))"; sed -i "${ln}s/default \([0-9]*\)/default 16/" zmk/app/Kconfig
-      - name: West Build (${{ steps.variables.outputs.display-name }})
         run: |
           west build -s zmk/app -b ${{ matrix.board }} -- -DZMK_CONFIG=${GITHUB_WORKSPACE}/config ${{ steps.variables.outputs.extra-cmake-args }} ${{ matrix.cmake-args }}
       - name: ${{ steps.variables.outputs.display-name }} Kconfig file
