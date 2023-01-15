@@ -14,12 +14,22 @@
 #define ADJ 3
 
 #define COMBO(NAME, BINDINGS, KEYPOS) \
-  combo_##NAME { \
-    timeout-ms = <100>; \
-    bindings = <BINDINGS>; \
-    key-positions = <KEYPOS>; \
-    layers = <0>; \
-  };
+    combo_##NAME { \
+        layers = <0>; \
+        timeout-ms = <200>; \
+        bindings = BINDINGS; \
+        key-positions = <KEYPOS>; \
+    };
+
+#define MACRO(NAME, ...) \
+    NAME: NAME { \
+        label = NAME; \
+        compatible = "zmk,behavior-macro"; \
+        #binding-cells = <0>; \
+        wait-ms = <0>; \
+        tap-ms = <0>; \
+        bindings = __VA_ARGS__; \
+    };
 
 &lt { quick_tap_ms = <200>; };
 &mt { quick_tap_ms = <200>; };
@@ -46,67 +56,67 @@
     combos {
         compatible = "zmk,combos";
               
-        COMBO(le, &kp E, 5 4)
-        COMBO(lz, &kp Z, 4 3)
-        COMBO(lm, &kp M, 3 2)
-        COMBO(ls, &kp S, 5 3)
-        COMBO(lsqt, &kp SQT, 4 2)
-        COMBO(ldot, &kp DOT, 5 2)
-        COMBO(lq, &kp Q, 5 4 3)
-        COMBO(lrbkt, &kp RBKT, 4 3 2)
-        COMBO(lgrave, &kp GRAVE, 5 3 2)
-        COMBO(lesc, &kp ESC, 5 4 3 2)
+        COMBO(le, <&kp E>, 5 4)
+        COMBO(lz, <&kp Z>, 4 3)
+        COMBO(lm, <&kp M>, 3 2)
+        COMBO(ls, <&kp S>, 5 3)
+        COMBO(lsqt, <&kp SQT>, 4 2)
+        COMBO(ldot, <&kp DOT>, 5 2)
+        COMBO(lq, <&kp Q>, 5 4 3)
+        COMBO(lrbkt, <&kp RBKT>, 4 3 2)
+        COMBO(lgrave, <&kp GRAVE>, 5 3 2)
+        COMBO(lesc, <&kp ESC>, 5 4 3 2)
 
-        COMBO(re, &kp E, 8 9)
-        COMBO(rz, &kp Z, 9 10)
-        COMBO(rm, &kp M, 10 11)
-        COMBO(rs, &kp S, 8 10)
-        COMBO(rsqt, &kp SQT, 9 11)
-        COMBO(rdot, &kp DOT, 8 11)
-        COMBO(rq, &kp Q, 8 9 10)
-        COMBO(rbkt, &kp RBKT, 9 10 11)
-        COMBO(rgrave, &kp GRAVE, 8 10 11)
-        COMBO(resc, &kp ESC, 8 9 10 11)
+        COMBO(re, <&kp E>, 8 9)
+        COMBO(rz, <&kp Z>, 9 10)
+        COMBO(rm, <&kp M>, 10 11)
+        COMBO(rs, <&kp S>, 8 10)
+        COMBO(rsqt, <&kp SQT>, 9 11)
+        COMBO(rdot, <&kp DOT>, 8 11)
+        COMBO(rq, <&kp Q>, 8 9 10)
+        COMBO(rbkt, <&kp RBKT>, 9 10 11)
+        COMBO(rgrave, <&kp GRAVE>, 8 10 11)
+        COMBO(resc, <&kp ESC>, 8 9 10 11)
               
-        COMBO(lg, &kp G, 18 17)
-        COMBO(lu, &kp U, 17 16)
-        COMBO(lp, &kp P, 16 15)
-        COMBO(li, &kp I, 18 16)
-        COMBO(lw, &kp W, 17 15)
-        COMBO(lo, &kp O, 18 15)
-        // COMBO(lCT, &kp , 18 17 16)
-        COMBO(la, &kp A, 17 16 15)
-        COMBO(ltab, &kp TAB, 18 16 15)
-        COMBO(lret, &kp RET, 18 17 16 15)
+        COMBO(lg, <&kp G>, 18 17)
+        COMBO(lu, <&kp U>, 17 16)
+        COMBO(lp, <&kp P>, 16 15)
+        COMBO(li, <&kp I>, 18 16)
+        COMBO(lw, <&kp W>, 17 15)
+        COMBO(lo, <&kp O>, 18 15)
+        // COMBO(lCT, <&kp ,> 18 17 16)
+        COMBO(la, <&kp A>, 17 16 15)
+        COMBO(ltab, <&kp TAB>, 18 16 15)
+        COMBO(lret, <&kp RET>, 18 17 16 15)
               
-        COMBO(rg, &kp G, 21 22)
-        COMBO(ru, &kp U, 22 23)
-        COMBO(rp, &kp P, 23 24)
-        COMBO(ri, &kp I, 21 23)
-        COMBO(rw, &kp W, 22 24)
-        COMBO(ro, &kp O, 21 24)
-        // COMBO(rCT, &kp , 21 22 23)
-        COMBO(ra, &kp A, 22 23 24)
-        COMBO(rtab, &kp TAB, 21 23 24)
-        COMBO(rret, &kp RET, 21 22 23 24)
+        COMBO(rg, <&kp G>, 21 22)
+        COMBO(ru, <&kp U>, 22 23)
+        COMBO(rp, <&kp P>, 23 24)
+        COMBO(ri, <&kp I>, 21 23)
+        COMBO(rw, <&kp W>, 22 24)
+        COMBO(ro, <&kp O>, 21 24)
+        // COMBO(rCT, <&kp ,> 21 22 23)
+        COMBO(ra, <&kp A>, 22 23 24)
+        COMBO(rtab, <&kp TAB>, 21 23 24)
+        COMBO(rret, <&kp RET>, 21 22 23 24)
         
-        COMBO(lv, &kp V, 39 19)
-        COMBO(lk, &kp K, 39 18)
-        COMBO(lr, &kp R, 39 17)
-        COMBO(ll, &kp L, 39 16)
-        COMBO(lcomma, &kp COMMA, 39 15)
-        COMBO(lx, &kp X, 39 18 17)
-        COMBO(llbkt, &kp LBKT, 39 17 16)
-        COMBO(lsemi, &kp SEMI, 39 16 15)
+        COMBO(lv, <&kp V>, 39 19)
+        COMBO(lk, <&kp K>, 39 18)
+        COMBO(lr, <&kp R>, 39 17)
+        COMBO(ll, <&kp L>, 39 16)
+        COMBO(lcomma, <&kp COMMA>, 39 15)
+        COMBO(lx, <&kp X>, 39 18 17)
+        COMBO(llbkt, <&kp LBKT>, 39 17 16)
+        COMBO(lsemi, <&kp SEMI>, 39 16 15)
         
-        COMBO(rv, &kp V, 42 20)
-        COMBO(rk, &kp K, 42 21)
-        COMBO(rr, &kp R, 42 22)
-        COMBO(rl, &kp L, 42 23)
-        COMBO(rcomma, &kp COMMA, 42 24)
-        COMBO(rx, &kp X, 42 21 22)
-        COMBO(rlbkt, &kp LBKT, 42 22 23)
-        COMBO(rsemi, &kp SEMI, 42 23 24)
+        COMBO(rv, <&kp V>, 42 20)
+        COMBO(rk, <&kp K>, 42 21)
+        COMBO(rr, <&kp R>, 42 22)
+        COMBO(rl, <&kp L>, 42 23)
+        COMBO(rcomma, <&kp COMMA>, 42 24)
+        COMBO(rx, <&kp X>, 42 21 22)
+        COMBO(rlbkt, <&kp LBKT>, 42 22 23)
+        COMBO(rsemi, <&kp SEMI>, 42 23 24)
 
     };
     keymap {
