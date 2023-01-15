@@ -44,7 +44,14 @@
 
 / {
     macros {
-        MACRO(tapA, <&macro_tap &kp A>)
+        tapA: tapA {
+            label = tapA;
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp A>;
+        };
         MACRO(tapB, <&macro_tap &kp B>)
         MACRO(tapC, <&macro_tap &kp C>)
         MACRO(tapD, <&macro_tap &kp D>)
