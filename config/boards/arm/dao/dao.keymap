@@ -19,7 +19,6 @@
         timeout-ms = <200>; \
         bindings = BINDINGS; \
         key-positions = <KEYPOS>; \
-        slow-release; \
     };
 
 #define MACRO_STRINGIFY(x) #x
