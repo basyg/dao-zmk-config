@@ -19,6 +19,7 @@
         timeout-ms = <200>; \
         bindings = BINDINGS; \
         key-positions = <KEYPOS>; \
+        slow-release; \
     };
 
 #define MACRO(NAME, ...) \
@@ -56,7 +57,7 @@
     combos {
         compatible = "zmk,combos";
               
-        COMBO(le, <&macro_tap &kp E>, 5 4)
+        COMBO(le, <&kp E &kp Z>, 5 4)
         COMBO(lz, <&kp Z>, 4 3)
         COMBO(lm, <&kp M>, 3 2)
         COMBO(ls, <&kp S>, 5 3)
