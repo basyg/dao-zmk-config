@@ -56,7 +56,7 @@
     combos {
         compatible = "zmk,combos";
               
-        COMBO(le, <&kp E>, 5 4)
+        COMBO(le, <&macro_tap &kp E>, 5 4)
         COMBO(lz, <&kp Z>, 4 3)
         COMBO(lm, <&kp M>, 3 2)
         COMBO(ls, <&kp S>, 5 3)
